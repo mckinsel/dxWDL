@@ -9,7 +9,18 @@ workflow array_mod_add {
             input: n=n, a=a, b=i
         }
     }
+    call bug_nop {
+        input: x=n
+    }
     output {
         Array[Int] result = add.result
+    }
+}
+
+task bug_nop {
+    Int x
+
+    command {
+        echo "Hello, world!"
     }
 }
